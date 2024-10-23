@@ -15,5 +15,6 @@ app.use(router)
 
 app.use(Toast, {
   position: POSITION.TOP_RIGHT,
+  toastClassName: 'toast-custom',
 });
 app.mount('#app')

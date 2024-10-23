@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen bg-gray-200 p-4">
+  <div class="flex items-center justify-center min-h-screen relative bg-cover bg-center bg-no-repeat bg-background">
     <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
       <h1 class="text-3xl font-bold text-center mb-4 text-gray-800">Welcome to Home Page</h1>
       <p class="text-lg mb-2 text-gray-700">
@@ -11,7 +11,7 @@
       </p>
       <button
         @click="handleLogout"
-        class="w-full bg-[#009578] hover:bg-[#007f61] text-white font-semibold py-2 rounded transition duration-200"
+        class="w-full bg-[#1F41BB] hover:bg-[#1f41bbe3] text-white font-semibold py-2 rounded transition duration-200"
       >
         Logout
       </button>
@@ -48,3 +48,11 @@ const handleLogout = () => {
 }
 
 </script>
+
+<style scoped>
+.bg-background {
+  background-image: url('@/assets/background.png');
+  background-size: cover;
+  background-position: center;
+}
+</style>

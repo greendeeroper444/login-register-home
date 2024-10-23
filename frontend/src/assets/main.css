@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.toast-custom {
+    background-color: white !important;
+    color: #1fbb72 !important;
+    border: 1px solid #1F41BB;
+}
+.toast-error {
+    background-color: #FFCCCC !important;
+    color: #D8000C !important;
+    border: 1px solid #D8000C;
+}

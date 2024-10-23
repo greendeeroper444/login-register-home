@@ -1,50 +1,26 @@
-// utils.js
-
-/**
- * Validates a password based on specific criteria.
- * @param {string} password - The password to validate.
- * @returns {boolean} - Returns true if the password is valid, false otherwise.
- */
-export const validatePassword = (password) => {
-  const minLength = 8;
+export const evaluatePasswordStrength = (password) => {
   const hasUpperCase = /[A-Z]/.test(password);
   const hasLowerCase = /[a-z]/.test(password);
-  const hasNumbers = /[0-9]/.test(password);
-  const hasSymbols = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  const hasNumbers = /\d/.test(password);
+  const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  const isLongEnough = password.length >= 8;
+  const strengthsText = 'Strength:' ;
 
-  return (
-    password.length >= minLength &&
-    hasUpperCase &&
-    hasLowerCase &&
-    hasNumbers &&
-    hasSymbols
-  );
+  if (isLongEnough && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChars) {
+    return `${strengthsText} strong`;
+  } else if (isLongEnough && (hasUpperCase || hasLowerCase) && (hasNumbers || hasSpecialChars)) {
+    return `${strengthsText} medium`;
+  } else {
+    return `${strengthsText} weak`;
+  }
 };
 
-/**
- * Evaluates the strength of a password.
- * @param {string} password - The password to evaluate.
- * @returns {string} - Returns 'weak', 'medium', or 'strong'.
- */
-export const evaluatePasswordStrength = (password) => {
-  let strength = 'weak';
+export const validatePassword = (password) => {
+  const lengthCheck = password.length >= 8;
+  const numberCheck = /\d/.test(password);
+  const specialCharCheck = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  const upperCaseCheck = /[A-Z]/.test(password);
+  const lowerCaseCheck = /[a-z]/.test(password);
 
-  if (password.length >= 8) {
-    let score = 0;
-    if (/[A-Z]/.test(password)) score++; //has upper case
-    if (/[a-z]/.test(password)) score++; //has lower case
-    if (/[0-9]/.test(password)) score++; //has number
-    if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) score++; //has symbol
-
-    //assign strength based on score
-    if (score < 2) {
-      strength = 'weak';
-    } else if (score === 2) {
-      strength = 'medium';
-    } else {
-      strength = 'strong';
-    }
-  }
-
-  return strength;
+  return lengthCheck && numberCheck && specialCharCheck && upperCaseCheck && lowerCaseCheck;
 };
